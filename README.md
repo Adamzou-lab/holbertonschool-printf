@@ -51,12 +51,13 @@ man ./man_3_printf
 
 Compile with a test file:
 ```bash
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format -I. *.c tests/main.c -o tests/test
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c main.c -o test
+./test
 ```
 
 Check for memory leaks with Valgrind:
 ```bash
-valgrind --leak-check=full ./tests/test
+valgrind --leak-check=full ./test
 ```
 
 ## Flowchart
