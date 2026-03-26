@@ -93,9 +93,9 @@ flowchart TB
     AddCount --> Advance2["avancer apres le specifier"]
     Advance2 --> ReadChar
 
-    style Start fill:transparent
-    style CheckNull fill:transparent
-    style ReturnError fill:transparent
+    style Start fill:#eee
+    style CheckNull fill:#eee
+    style ReturnError fill:#eee
 ```
 
 ## Authors
