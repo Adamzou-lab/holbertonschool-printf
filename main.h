@@ -11,5 +11,7 @@ int _printf(const char *format, ...);
 int handler_c(va_list args);
 int handler_s(va_list args);
 int handler_percent(va_list args);
+int _putchar(char c);
+int handle_specifier(char s, va_list args);
 
 #endif
