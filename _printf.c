@@ -7,7 +7,7 @@
  *
  * Return: The number of characters printed.
  */
-int handle_specifier(char s, va_list args)
+int get_handler(char s, va_list args)
 {
 	char percent = '%';
 
@@ -49,8 +49,7 @@ int _printf(const char *format, ...)
 				va_end(args);
 				return (-1);
 			}
-			/* handle_specifier returns the number of characters printed */
-			count += handle_specifier(format[i], args);
+			count += get_handler(format[i], args);
 		}
 		else
 		{

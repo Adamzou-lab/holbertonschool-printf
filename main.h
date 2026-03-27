@@ -8,7 +8,7 @@
 int _printf(const char *format, ...);
 
 /* Handler specifier*/
-int handle_specifier(char s, va_list args);
+int get_handler(char s, va_list args);
 
 /* Handlers functions */
 int handler_c(va_list args);
