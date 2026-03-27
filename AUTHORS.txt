@@ -1,0 +1,4 @@
+# This file lists all contributors to the repository.
+
+Adam ZOUAOUI <13004@holbertonstudents.com>
+Panaki GILLOT <12240@holbertonstudents.com>

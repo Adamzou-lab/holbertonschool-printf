@@ -7,9 +7,12 @@
 /* Main function */
 int _printf(const char *format, ...);
 
-/* Helper functions */
-int _putchar(char c);
-int print_string(char *str);
-int handle_format(char format, va_list args);
+/* Handler specifier */
+int get_handler(char s, va_list args);
 
-#endif /* MAIN_H */
+/* Handlers functions */
+int handler_c(va_list args);
+int handler_s(va_list args);
+int handler_percent(va_list args);
+
+#endif
