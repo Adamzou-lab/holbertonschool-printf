@@ -1,27 +1,5 @@
 #include "main.h"
-/**
- * handle_specifier - Determines which handler function to use based on
- * the specifier character.
- * @s: The specifier character (e.g., 'c', 's', '%').
- * @args: The list of arguments to be processed.
- *
- * Return: The number of characters printed.
- */
-int handle_specifier(char s, va_list args)
-{
-	char percent = '%';
 
-	if (s == 's')
-		return (handler_s(args));
-	if (s == 'c')
-		return (handler_c(args));
-	if (s == '%')
-		return (handler_percent(args));
-
-	write(1, &percent, 1);
-	write(1, &s, 1);
-	return (2);
-}
 /**
 * _printf - prints formatted output
 * @format: format string
@@ -31,6 +9,8 @@ int handle_specifier(char s, va_list args)
 int _printf(const char *format, ...)
 {
 	int i = 0, count = 0;
+
+	char c;
 
 	va_list args;
 
@@ -45,12 +25,20 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			if (!format[i])
-			{
-				va_end(args);
 				return (-1);
+			if (format[i] == 'c')
+				count += handler_c(args);
+			else if (format[i] == 's')
+				count += handler_s(args);
+			else if (format[i] == '%')
+				count += handler_percent(args);
+			else
+			{
+				c = '%';
+				write(1, &c, 1);
+				write(1, &format[i], 1);
+				count += 2;
 			}
-			/* handle_specifier returns the number of characters printed */
-			count += handle_specifier(format[i], args);
 		}
 		else
 		{
