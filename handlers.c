@@ -49,3 +49,35 @@ int handler_percent(va_list args)
 	write(1, &percent, 1);
 	return (1);
 }
+/**
+ * handler_di - Gère les spécificateurs de format %d et %i.
+ * @args: Liste des arguments variadiques.
+ *
+ * Return: Le nombre de caractères imprimés.
+ */
+int handler_di(va_list args)
+{
+	char minus;
+	int n;
+	int count;
+
+	n = va_arg(args, int);
+	if (n == INT_MIN)
+	{
+		/* Pour éviter l'overflow on le print direct */
+		write(1, "-2147483648", 11);
+		return (11);
+	}
+
+	if (n < 0)
+	{
+		minus = '-';
+		write(1, &minus, 1);
+		/* On reverse n pour pas qu'il soit négatif n = -(-42) = 42 */
+		n = -n;
+		count = print_int(n) + 1;
+	}
+	else
+		count = print_int(n);
+	return (count);
+}
