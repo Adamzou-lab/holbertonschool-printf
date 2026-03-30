@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * handle_specifier - Determines which handler function to use based on
+ * get_handler - Determines which handler function to use based on
  * the specifier character.
  * @s: The specifier character (e.g., 'c', 's', '%').
  * @args: The list of arguments to be processed.
@@ -17,7 +17,8 @@ int get_handler(char s, va_list args)
 		return (handler_c(args));
 	if (s == '%')
 		return (handler_percent(args));
-
+	if (s == 'd' || s == 'i')
+		return (handler_di(args));
 	write(1, &percent, 1);
 	write(1, &s, 1);
 	return (2);
