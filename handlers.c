@@ -50,6 +50,42 @@ int handler_percent(va_list args)
 	return (1);
 }
 /**
+ * print_int - Affiche un entier caractère par caractère.
+ * @n: L'entier à afficher.
+ *
+ * Return: Le nombre de caractères affichés.
+ */
+int print_int(int n)
+{
+	char c;
+	int count;
+
+	/* On transforme n en caractère affichable via le write plus bas */
+	c = n + '0';
+	/* Condition d'arrêt : il ne reste qu'un seul chiffre */
+	if (n / 10 == 0)
+	{
+		/* Affiche le dernier chiffre restant du dernier */
+		/* appel puis retourne 1 dans le compteur */
+		write(1, &c, 1);
+		return (1);
+	}
+	else
+	{
+		/* C'est pour extraire le dernier chiffre de n */
+		/* Exemple 123 % 10 = 3 donc c = '3'*/
+		c = n % 10 + '0';
+		/* 123 / 10 = 12 donc on appel print_int(12) puis */
+		/* on rappel print_int(1) qui est la condition d'arrêt */
+		count = print_int(n / 10);
+		write(1, &c, 1); /* Puis affiche 2 puis affiche 3 */
+		/* En premier lieu ça va return 1 dans le if */
+		/* et après ici ça retourne 1 + 1 au deuxieme appel */
+		/* puis 2 + 1 au troisieme, etc */
+		return (count + 1);
+	}
+}
+/**
  * handler_di - Gère les spécificateurs de format %d et %i.
  * @args: Liste des arguments variadiques.
  *
