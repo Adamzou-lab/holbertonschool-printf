@@ -74,38 +74,45 @@ valgrind --leak-check=full ./test
 ---
 config:
   theme: neutral
+  layout: dagre
 ---
 flowchart TB
     Start(["Start"]) --> CheckNull{"format est NULL ?"}
-    CheckNull -- oui --> ReturnError["return -1"]
+    CheckNull -- oui --> ReturnError["return (-1)"]
     ReturnError --> End1(["End"])
     CheckNull -- non --> Init["compteur = 0 et va_start"]
     Init --> ReadChar["Lire format[i]"]
-    ReadChar --> IsNull{"format[i] est le caractere \0 ?"}
+    ReadChar --> IsNull@{ label: "format[i] == '\\0' ?" }
     IsNull -- oui --> Cleanup["va_end puis return compteur"]
     Cleanup --> End2(["End"])
-    IsNull -- non --> IsPercent{"format[i] est un % ?"}
+    IsNull -- non --> IsPercent@{ label: "format[i] == '%' ?" }
     IsPercent -- non --> WriteChar["write le caractere et compteur++"]
-    WriteChar --> Advance1["i plus 1"]
+    WriteChar --> Advance1["i++"]
     Advance1 --> ReadChar
-    IsPercent -- oui --> LookNext["Regarder format[i] + 1"]
+    IsPercent -- oui --> LookNext["Regarder format[i+1]"]
     LookNext --> CheckSpec{"Quel specifier ?"}
     CheckSpec -- c --> HandlerC["Handler c"]
     CheckSpec -- s --> HandlerS["Handler s"]
     CheckSpec -- pourcent --> HandlerPct["Handler %"]
-    CheckSpec -- d ou i --> HandlerD["Handler d et i"]
+    CheckSpec -- d ou i --> CheckIntMin{"n == INT_MIN ?"}
     CheckSpec -- autre --> HandlerEdge["Cas limite"]
-    HandlerC --> AddCount["compteur++ retour du handler"]
+    CheckIntMin -- oui --> PrintIntMin["Affiche -2147483648<br>return 11"]
+    CheckIntMin -- non --> CheckNeg{"n &lt; 0 ?"}
+    CheckNeg -- oui --> HandleNeg@{ label: "Affiche '-'<br>n = -n" }
+    CheckNeg -- non --> PrintInt["print_int(n)"]
+    HandleNeg --> PrintInt
+    PrintIntMin --> AddCount["compteur += retour du handler"]
+    HandlerC --> AddCount
     HandlerS --> AddCount
     HandlerPct --> AddCount
-    HandlerD --> AddCount
+    PrintInt --> AddCount
     HandlerEdge --> AddCount
-    AddCount --> Advance2["avancer apres le specifier"]
+    AddCount --> Advance2["i++"]
     Advance2 --> ReadChar
 
-    style Start fill:#eee
-    style CheckNull fill:#eee
-    style ReturnError fill:#eee
+    IsNull@{ shape: diamond}
+    IsPercent@{ shape: diamond}
+    HandleNeg@{ shape: rect}
 ```
 
 ## Authors
