@@ -43,13 +43,6 @@ Discount: 50%
 ```
 
 ```c
-<<<<<<< HEAD
-_printf("%d Soleil !", 123);
-```
-Output:
-```
-123 Soleil !
-=======
 _printf("Number: %d\n", 42);
 ```
 Output:
@@ -63,7 +56,6 @@ _printf("Negative: %i\n", -762534);
 Output:
 ```
 Negative: -762534
->>>>>>> dev
 ```
 ## Man page
 
