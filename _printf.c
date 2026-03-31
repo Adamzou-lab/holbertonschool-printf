@@ -18,6 +18,8 @@ int get_handler(char s, va_list args)
 		return (handler_c(args));
 	if (s == '%')
 		return (handler_percent(args));
+	if (s == 'd' || s == 'i')
+		return (handler_di(args));
 	write(1, &percent, 1);
 	write(1, &s, 1);
 	return (2);
