@@ -25,6 +25,7 @@ Output:
 ```
 Hello, World!
 ```
+
 ```c
 _printf("The letter is: %c\n", 'A');
 ```
@@ -32,14 +33,22 @@ Output:
 ```
 The letter is: A
 ```
+
 ```c
 _printf("Discount: 50%%\n");
 ```
-Output;
+Output:
 ```
 Discount: 50%
 ```
 
+```c
+_printf("%d Soleil !", 123);
+```
+Output:
+```
+123 Soleil !
+```
 ## Man page
 
 To read the man page:
