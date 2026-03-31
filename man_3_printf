@@ -23,6 +23,12 @@ Prints a single character.
 .B %s
 Prints a string of characters. If the pointer is NULL, prints "(null)".
 .TP
+.B %d
+Prints a decimal integer.
+.TP
+.B %i
+Prints an integer.
+.TP
 .B %%
 Prints a literal percent sign.
 .SH RETURN VALUE
@@ -34,6 +40,8 @@ Returns -1 if the format string is NULL or ends with an unfinished specifier.
 .nf
 _printf("Hello, %s!\n", "world");
 _printf("Character: %c\n", 'A');
+_printf("Number: %d\n", 42);
+_printf("Integer: %i\n", -7);
 _printf("Percent sign: %%\n");
 .fi
 .RE
