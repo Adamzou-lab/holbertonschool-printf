@@ -1,8 +1,8 @@
-# _printf
+# Project: _printf
 
 _printf is a recreated version of the real C function printf. We developed
 it as a project for Holberton School. It prints output according to a format
-string and handles conversion specifiers like %c, %s and %%.
+string and handles conversion specifiers like %c, %s, %%, %d and %i.
 
 ## Compilation
 
@@ -19,11 +19,11 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
 
 ## Examples
 ```c
-_printf("Hello, %s!\n", "World");
+_printf("Hello, %s!\n", "Za Warudo");
 ```
 Output:
 ```
-Hello, World!
+Hello, Za Warudo!
 ```
 
 ```c
@@ -43,11 +43,27 @@ Discount: 50%
 ```
 
 ```c
+<<<<<<< HEAD
 _printf("%d Soleil !", 123);
 ```
 Output:
 ```
 123 Soleil !
+=======
+_printf("Number: %d\n", 42);
+```
+Output:
+```
+Number: 42
+```
+
+```c
+_printf("Negative: %i\n", -762534);
+```
+Output:
+```
+Negative: -762534
+>>>>>>> dev
 ```
 ## Man page
 
@@ -115,7 +131,7 @@ flowchart TB
     HandleNeg@{ shape: rect}
 ```
 
-## Authors
+## Contributors
 
 * Adam - [GitHub](https://github.com/Adamzou-lab)
 * Panaki - [GitHub](https://github.com/Panaki-GILLOT)
